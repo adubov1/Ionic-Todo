@@ -33,8 +33,7 @@ export class AppComponent {
       this.afAuth.authState.subscribe(user => {
         if (!user) {
           this.router.navigateByUrl(`/login`);
-        }
-        else {
+        } else {
           this.router.navigateByUrl(`/main`);
         }
       });
