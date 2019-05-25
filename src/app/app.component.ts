@@ -31,7 +31,9 @@ export class AppComponent {
       this.splashScreen.hide();
 
       this.afAuth.authState.subscribe(user => {
-        if (!user) {
+        if (this.router.url === '/tos') {
+          return;
+        } else if (!user) {
           this.router.navigateByUrl(`/login`);
         } else {
           this.router.navigateByUrl(`/main`);

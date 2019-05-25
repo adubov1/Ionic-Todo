@@ -14,7 +14,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     firebase.auth.EmailAuthProvider.PROVIDER_ID,
   ],
   tosUrl: '/tos',
-  privacyPolicyUrl: '/privacy',
+  privacyPolicyUrl: '/tos',
   credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM
 };
 const routes: Routes = [

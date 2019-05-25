@@ -2,6 +2,7 @@ import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AlertController } from '@ionic/angular';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -18,7 +19,7 @@ export class ListComponent implements OnInit {
   @Input('allowDone') allowDone: boolean;
   loading = true;
 
-  constructor(private afAuth: AngularFireAuth, private db: AngularFirestore, private alertCtrl: AlertController) {
+  constructor(private afAuth: AngularFireAuth, private db: AngularFirestore, private alertCtrl: AlertController, private router: Router) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.user = user;
@@ -142,6 +143,13 @@ export class ListComponent implements OnInit {
     this.afAuth.auth.signOut().then(() => {
       location.reload();
     });
+  }
+  navDone() {
+    if (this.router.url === '/main') {
+      this.router.navigateByUrl('/done');
+    } else if (this.router.url === '/done') {
+      this.router.navigateByUrl('/main');
+    }
   }
 
 }

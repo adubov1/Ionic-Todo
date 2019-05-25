@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -15,7 +16,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { environment } from '../environments/environment';
 import { LoginPageModule } from './login/login.module';
-
+import { MzButtonModule } from 'ngx-materialize';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { LoginPageModule } from './login/login.module';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    LoginPageModule
+    LoginPageModule,
+    CommonModule
   ],
   providers: [
     StatusBar,
