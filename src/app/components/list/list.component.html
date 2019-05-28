@@ -1,19 +1,8 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<ion-title padding>
-  <div style="float: left;">
-    {{user.displayName}}'s Todo List ({{items.length}})
-    <a style="font-size: 13px;" (click)="signOut()">sign out</a>
-  </div>
-  <a style="float: right; position: absolute; left: 93%" class="btn-floating waves-effect waves-light blue" (click)="add()"><i class="material-icons">add</i></a>
-  <!--<ion-button style="float: right;" (click)="add()"><ion-icon slot="icon-only" name="add"></ion-icon></ion-button>-->
-</ion-title>
-<br>
 <ion-spinner *ngIf="loading" color="primary"></ion-spinner>
   <ion-item-sliding *ngFor="let item of items; let i = index">
     <ion-item (click)="edit(item)">
       <ion-label>{{item.text}}</ion-label>
+      <ion-note color="primary" mode="ios" slot="end">{{item.fdate}}</ion-note>
     </ion-item>
 
     <ion-item-options side="start" (ionSwipe)="complete(item)">
@@ -41,6 +30,10 @@
     </ion-item-options>
 
   </ion-item-sliding>
-  <a style="position: absolute; left: 93%; top: 90%;" class="btn-floating waves-effect waves-light red" (click)="navDone()"><i class="material-icons">swap_horiz</i></a>
-
+  <!--<a style="position: absolute; left: 93%; top: 90%;" class="btn-floating waves-effect waves-light red" (click)="navDone()"><i class="material-icons">swap_horiz</i></a>-->
+  <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    <a class="btn-floating btn-large red">
+      <i (click)="navDone()" class="large material-icons">swap_horiz</i>
+    </a>
+  </div>
 

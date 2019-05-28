@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <ion-title color="dark" style="float: left;">
+      {{user.displayName}}'s {{title}} ({{items.length}})
+      <a style="font-size: 13px;" (click)="signOut.emit()">sign out</a>
+  </ion-title>
+  <!--<ion-buttons slot="primary" mode="md">-->
+    <!--<ion-button shape="round" color="primary" icon-only (click)="add.emit()">-->
+      <!--<ion-icon name="add-circle"></ion-icon>-->
+    <!--</ion-button>-->
+  <!--</ion-buttons>-->
+  <a style="float: right; position: absolute; left: 87%; bottom: 16%;" class="btn-floating waves-effect waves-light blue" (click)="add.emit()"><i class="material-icons">add</i></a>

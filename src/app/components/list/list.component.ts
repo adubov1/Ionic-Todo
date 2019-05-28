@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { Router} from '@angular/router';
+import { AddOrEditComponent } from '../add-or-edit/add-or-edit.component';
 
 @Component({
   selector: 'app-list',
@@ -11,7 +12,8 @@ import { Router} from '@angular/router';
 })
 export class ListComponent implements OnInit {
 
-  user: any = {}
+  user: any = {};
+  task: any;
 
   items = [];
   @Input('title') title: string;
@@ -19,7 +21,13 @@ export class ListComponent implements OnInit {
   @Input('allowDone') allowDone: boolean;
   loading = true;
 
-  constructor(private afAuth: AngularFireAuth, private db: AngularFirestore, private alertCtrl: AlertController, private router: Router) {
+  constructor(
+    private afAuth: AngularFireAuth,
+    private db: AngularFirestore,
+    private alertCtrl: AlertController,
+    private router: Router,
+    private modalCtrl: ModalController
+  ) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.user = user;
@@ -41,6 +49,7 @@ export class ListComponent implements OnInit {
           const item = a.payload.doc.data();
           item['id'] = a.payload.doc.id;
           this.items.push(item);
+          item['fdate'] = new Date(item['date']).toLocaleString();
         });
         this.loading = false;
       });
@@ -48,43 +57,76 @@ export class ListComponent implements OnInit {
   }
 
   async add() {
-    this.addOrEdit('New Task', val => this.handleAddItem(val.task));
+    // this.addOrEdit('New Task', val => this.handleAddItem(val.task, val.date));
+    const modal: HTMLIonModalElement = await this.modalCtrl.create({component: AddOrEditComponent});
+    await modal.present();
+    const res = await modal.onDidDismiss();
+    console.log(res);
+    this.handleAddItem(res.data.task, res.data.date);
   }
 
   async edit(item) {
-    this.addOrEdit('Edit Task', val => this.handleEditItem(val.task, item), item);
-  }
-
-  async addOrEdit(header, handler, item?) {
-    const alert = await this.alertCtrl.create({
-      header,
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: () => {
-          }
-        }, {
-          text: 'Ok',
-          handler,
-        }
-      ],
-      inputs: [
-        {
-          name: 'task',
-          type: 'text',
-          placeholder: 'My task',
-          value: item ? item.text : '',
-        },
-      ],
+    // this.addOrEdit('Edit Task', val => this.handleEditItem(val.task, item), item);
+    const modal: HTMLIonModalElement = await this.modalCtrl.create({
+      component: AddOrEditComponent,
+      componentProps: { task: item.text, date: item.date }
     });
-
-    await alert.present();
-
-    alert.getElementsByTagName('input')[0].focus();
+    console.log(item.text, item.date);
+    await modal.present();
+    const res = await modal.onDidDismiss();
+    if (!res.data.date) {
+      res.data.date = item.date;
+    }
+    if (res.data.task === '') {
+      res.data.task = item.text;
+    }
+    this.handleEditItem(res.data.task, item, res.data.date);
   }
 
-  handleAddItem(text: string) {
+  /* async addOrEdit(header, handler, item?) { */
+    // const alert = await this.alertCtrl.create({
+      // header,
+      // buttons: [
+        // {
+          // text: 'Cancel',
+          // role: 'cancel',
+          // handler: () => {
+          // }
+        // }, {
+          // text: 'Ok',
+          // handler,
+        // }
+      // ],
+      // inputs: [
+        // {
+          // name: 'task',
+          // type: 'text',
+          // placeholder: 'My task',
+          // value: item ? item.text : '',
+        // },
+        // {
+          // name: 'date',
+          // type: 'date',
+          // min: '2019-05-24',
+          // max: '2055-01-12',
+          // value: item ? item.date : ''
+        // },
+      // ],
+    // });
+
+    // await alert.present();
+
+    // alert.getElementsByTagName('input')[0].focus();
+
+    // alert.addEventListener('keydown', (val => {
+      // if (val.keyCode === 13) {
+        // handler({task: val.srcElement['value']});
+        // alert.dismiss();
+      // }
+    // }));
+  /* } */
+
+  handleAddItem(text: string, date) {
     if (!text.trim().length) {
       return;
     }
@@ -95,15 +137,17 @@ export class ListComponent implements OnInit {
 
     this.db.collection(`users/${this.afAuth.auth.currentUser.uid}/${this.name}`).add({
       text,
+      date,
       pos: this.items.length ? this.items[0].pos + 1 : 0,
       created: nowUtc,
     });
 
   }
 
-  handleEditItem(text: string, item) {
+  handleEditItem(text: string, item, date?) {
     this.db.doc(`users/${this.afAuth.auth.currentUser.uid}/${this.name}/${item.id}`).set({
       text,
+      date
     }, {merge: true});
   }
 
@@ -112,16 +156,13 @@ export class ListComponent implements OnInit {
   }
 
   crit(item) {
-    this.moveItem(item, 'crit');
+    this.moveItem(item, 'main');
   }
 
   complete(item) {
     this.moveItem(item, 'done');
   }
 
-  later(item) {
-    this.moveItem(item, 'later');
-  }
 
   moveItem(item, list: string) {
     this.db.doc(`users/${this.afAuth.auth.currentUser.uid}/${this.name}/${item.id}`).delete();
@@ -152,4 +193,12 @@ export class ListComponent implements OnInit {
     }
   }
 
+  moveByOffset(index, offset) {
+    this.db.doc(`users/${this.afAuth.auth.currentUser.uid}/${this.name}/${this.items[index].id}`).set({
+      pos: this.items[index + offset].pos
+    }, {merge: true});
+    this.db.doc(`users/${this.afAuth.auth.currentUser.uid}/${this.name}/${this.items[index + offset].id}`).set({
+      pos: this.items[index].pos
+    }, {merge: true});
+  }
 }

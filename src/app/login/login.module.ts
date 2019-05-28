@@ -15,7 +15,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
   ],
   tosUrl: '/tos',
   privacyPolicyUrl: '/tos',
-  credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM
+  credentialHelper: firebaseui.auth.CredentialHelper.NONE
 };
 const routes: Routes = [
   {

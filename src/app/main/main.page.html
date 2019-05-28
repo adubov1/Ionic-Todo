@@ -1,3 +1,10 @@
+<ion-header>
+  <ion-toolbar mode="md">
+  <app-list-header [title]="'Taskit'" [user]="myList.user" [items]="myList.items" (add)="myList.add()" (signOut)="myList.signOut()"
+    [loading]="myList.loading"></app-list-header>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
-  <app-list [title]="'Todo List'" [name]="'main'" [allowDone]="true"></app-list>
+  <app-list #myList [title]="'Todo List'" [name]="'main'" [allowDone]=true></app-list>
 </ion-content>
