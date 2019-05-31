@@ -46,7 +46,7 @@
     <name>Taskit</name>
     <description>An awesome Task app.</description>
     <author email="alex@alexdub.me" href="alexdub.me">Alex Dubov</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://localhost:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -55,6 +55,7 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-navigation href="http://192.168.0.191:8100" sessionid="6e335394" />
+    <allow-navigation href="http://localhost:8100" sessionid="b41cab11" />
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
     <icon height="57" src="resources/ios/icon/icon.png" width="57" />

@@ -106,16 +106,15 @@ export class ListComponent implements OnInit {
   }
 
   handleEditItem(text: string, item, date?) {
-    let notifID
     this.db.doc(`users/${this.afAuth.auth.currentUser.uid}/${this.name}/${item.id}`).get().subscribe((doc) => {
-      notifID = doc.data().created;
+      let editNotifID = doc.data().created;
+      this.notifs.update({
+        id: editNotifID,
+        text: text,
+        trigger: { at: new Date(date) }
+      });
     }); 
-    console.log('notifID: ', notifID);
-    this.notifs.update({
-      id: notifID,
-      text: text,
-      trigger: { at: new Date(date) }
-    });
+    
 
     this.db.doc(`users/${this.afAuth.auth.currentUser.uid}/${this.name}/${item.id}`).set({
       text,
