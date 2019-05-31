@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AlertController, ModalController } from '@ionic/angular';
 import { Router} from '@angular/router';
 import { AddOrEditComponent } from '../add-or-edit/add-or-edit.component';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 @Component({
   selector: 'app-list',
@@ -26,7 +27,8 @@ export class ListComponent implements OnInit {
     private db: AngularFirestore,
     private alertCtrl: AlertController,
     private router: Router,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private notifs: LocalNotifications,
   ) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
@@ -57,7 +59,6 @@ export class ListComponent implements OnInit {
   }
 
   async add() {
-    // this.addOrEdit('New Task', val => this.handleAddItem(val.task, val.date));
     const modal: HTMLIonModalElement = await this.modalCtrl.create({component: AddOrEditComponent});
     await modal.present();
     const res = await modal.onDidDismiss();
@@ -66,7 +67,6 @@ export class ListComponent implements OnInit {
   }
 
   async edit(item) {
-    // this.addOrEdit('Edit Task', val => this.handleEditItem(val.task, item), item);
     const modal: HTMLIonModalElement = await this.modalCtrl.create({
       component: AddOrEditComponent,
       componentProps: { task: item.text, date: item.date }
@@ -83,68 +83,40 @@ export class ListComponent implements OnInit {
     this.handleEditItem(res.data.task, item, res.data.date);
   }
 
-  /* async addOrEdit(header, handler, item?) { */
-    // const alert = await this.alertCtrl.create({
-      // header,
-      // buttons: [
-        // {
-          // text: 'Cancel',
-          // role: 'cancel',
-          // handler: () => {
-          // }
-        // }, {
-          // text: 'Ok',
-          // handler,
-        // }
-      // ],
-      // inputs: [
-        // {
-          // name: 'task',
-          // type: 'text',
-          // placeholder: 'My task',
-          // value: item ? item.text : '',
-        // },
-        // {
-          // name: 'date',
-          // type: 'date',
-          // min: '2019-05-24',
-          // max: '2055-01-12',
-          // value: item ? item.date : ''
-        // },
-      // ],
-    // });
-
-    // await alert.present();
-
-    // alert.getElementsByTagName('input')[0].focus();
-
-    // alert.addEventListener('keydown', (val => {
-      // if (val.keyCode === 13) {
-        // handler({task: val.srcElement['value']});
-        // alert.dismiss();
-      // }
-    // }));
-  /* } */
-
   handleAddItem(text: string, date) {
     if (!text.trim().length) {
       return;
     }
 
-    const now = new Date();
-    const nowUtc = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(),
-      now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds()));
-
+    const nowS = Math.round( +new Date() / 1000); 
+    this.notifs.schedule({
+      id: nowS,
+      title: 'Taskit',
+      text: text,
+      trigger: { at: new Date(date) }
+    });
+    console.log('nowS', nowS);
     this.db.collection(`users/${this.afAuth.auth.currentUser.uid}/${this.name}`).add({
       text,
       date,
       pos: this.items.length ? this.items[0].pos + 1 : 0,
-      created: nowUtc,
+      created: nowS,
     });
 
   }
 
   handleEditItem(text: string, item, date?) {
+    let notifID
+    this.db.doc(`users/${this.afAuth.auth.currentUser.uid}/${this.name}/${item.id}`).get().subscribe((doc) => {
+      notifID = doc.data().created;
+    }); 
+    console.log('notifID: ', notifID);
+    this.notifs.update({
+      id: notifID,
+      text: text,
+      trigger: { at: new Date(date) }
+    });
+
     this.db.doc(`users/${this.afAuth.auth.currentUser.uid}/${this.name}/${item.id}`).set({
       text,
       date

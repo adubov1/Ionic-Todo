@@ -6,7 +6,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { LoginPage } from './login/login.page';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NotifsService } from './notifs.service';
 import { ToastController } from '@ionic/angular';
 
 @Component({
@@ -23,7 +22,6 @@ export class AppComponent {
     private afAuth: AngularFireAuth,
     private modalCtrl: ModalController,
     private router: Router,
-    private ns: NotifsService,
     public toastController: ToastController
   ) {
     this.initializeApp();

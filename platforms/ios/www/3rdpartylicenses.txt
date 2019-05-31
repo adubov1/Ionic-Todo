@@ -271,7 +271,7 @@ Apache-2.0
 @ionic-native/core
 MIT
 
-@ionic-native/firebase
+@ionic-native/local-notifications
 MIT
 
 @ionic-native/splash-screen

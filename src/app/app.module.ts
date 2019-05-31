@@ -14,13 +14,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { Firebase } from '@ionic-native/firebase/ngx';
 
 import { environment } from '../environments/environment';
 import { LoginPageModule } from './login/login.module';
 import { MzButtonModule } from 'ngx-materialize';
 import { ComponentsModule } from './components/components.module';
 import { AddOrEditComponent } from './components/add-or-edit/add-or-edit.component';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+
 
 const config = {
     apiKey: 'AIzaSyB_uIpuhkWlUmy3Y45VRdNklGocqyCfL3U',
@@ -51,7 +52,7 @@ const config = {
   ],
   providers: [
     StatusBar,
-    Firebase,
+    LocalNotifications,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
