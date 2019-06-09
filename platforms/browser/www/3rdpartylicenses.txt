@@ -33,10 +33,8 @@ MIT
 MIT
 
 @angular/fire/auth
-MIT
 
 @angular/fire/firestore
-MIT
 
 @angular/forms
 MIT
@@ -278,6 +276,9 @@ MIT
 MIT
 
 @ionic-native/status-bar
+MIT
+
+@ionic-native/taptic-engine
 MIT
 
 @ionic/angular

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Task } from '../../task';
 
 @Component({
@@ -12,9 +13,10 @@ export class AddOrEditComponent implements OnInit {
   preTask = this.navParams.get('task');
   preDate = this.navParams.get('date');
   tasks = new Task('');
-  constructor(public modalCtrl: ModalController, public navParams: NavParams) { }
+  constructor(public modalCtrl: ModalController, public navParams: NavParams, private statusBar: StatusBar) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   returnTask() {
     const task = {

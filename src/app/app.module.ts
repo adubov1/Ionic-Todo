@@ -21,7 +21,7 @@ import { MzButtonModule } from 'ngx-materialize';
 import { ComponentsModule } from './components/components.module';
 import { AddOrEditComponent } from './components/add-or-edit/add-or-edit.component';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
-
+import { TapticEngine } from '@ionic-native/taptic-engine/ngx';
 
 const config = {
     apiKey: 'AIzaSyB_uIpuhkWlUmy3Y45VRdNklGocqyCfL3U',
@@ -40,7 +40,9 @@ const config = {
   entryComponents: [],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(),
+    IonicModule.forRoot({
+      mode: 'ios'
+    }),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule.enablePersistence(),
@@ -53,6 +55,7 @@ const config = {
   providers: [
     StatusBar,
     LocalNotifications,
+    TapticEngine,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

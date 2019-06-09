@@ -1,0 +1,27 @@
+* {
+    font-family: "Product Sans Bold";
+}
+
+@media (min-width:320px) {
+    .btn-floating {
+        float: right;
+        position: absolute;
+        left: 87%;
+        bottom: 16%;
+        top: 20%;
+    }
+    ion-title {
+        font-size: 24px;
+        padding-left: 10px;
+    }
+}
+
+@media (min-width:641px) {
+    .btn-floating {
+        left: 96%;
+    }
+    ion-title {
+        font-size: 26px;
+        padding-left: 25px;
+    }
+}

@@ -2,9 +2,10 @@ import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AlertController, ModalController } from '@ionic/angular';
-import { Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { AddOrEditComponent } from '../add-or-edit/add-or-edit.component';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { TapticEngine } from '@ionic-native/taptic-engine/ngx';
 
 @Component({
   selector: 'app-list',
@@ -25,10 +26,11 @@ export class ListComponent implements OnInit {
   constructor(
     private afAuth: AngularFireAuth,
     private db: AngularFirestore,
-    private alertCtrl: AlertController,
+    public alertCtrl: AlertController,
     private router: Router,
     private modalCtrl: ModalController,
     private notifs: LocalNotifications,
+    private taptic: TapticEngine
   ) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
@@ -51,7 +53,8 @@ export class ListComponent implements OnInit {
           const item = a.payload.doc.data();
           item['id'] = a.payload.doc.id;
           this.items.push(item);
-          item['fdate'] = new Date(item['date']).toLocaleString();
+          var options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' }
+          item['fdate'] = new Date(item['date']).toLocaleString('en-US', options);
         });
         this.loading = false;
       });
@@ -59,14 +62,16 @@ export class ListComponent implements OnInit {
   }
 
   async add() {
+    this.taptic.selection();
     const modal: HTMLIonModalElement = await this.modalCtrl.create({component: AddOrEditComponent});
     await modal.present();
     const res = await modal.onDidDismiss();
-    console.log(res);
+    this.taptic.selection();
     this.handleAddItem(res.data.task, res.data.date);
   }
 
   async edit(item) {
+    this.taptic.selection();
     const modal: HTMLIonModalElement = await this.modalCtrl.create({
       component: AddOrEditComponent,
       componentProps: { task: item.text, date: item.date }
@@ -74,6 +79,7 @@ export class ListComponent implements OnInit {
     console.log(item.text, item.date);
     await modal.present();
     const res = await modal.onDidDismiss();
+    this.taptic.selection();
     if (!res.data.date) {
       res.data.date = item.date;
     }
@@ -151,17 +157,52 @@ export class ListComponent implements OnInit {
       this.db.doc(`users/${this.afAuth.auth.currentUser.uid}/${list}/${id}`).set(item);
     });
   }
-  signOut() {
+
+  async signOut() {
+    this.taptic.selection();
+    const alert = await this.alertCtrl.create({
+      header: 'Sign Out?',
+      mode: 'md',
+      cssClass: 'alertbox',
+      buttons: [
+        {
+          text: 'Yes',
+          cssClass: 'alertbox',
+          handler: () => {
+            this.taptic.selection();
+            this.signOuts();
+          }
+        },
+        {
+          text: 'No',
+          cssClass: 'alertbox',
+          handler: () => {
+            this.taptic.selection();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  signOuts() {
     this.afAuth.auth.signOut().then(() => {
       location.reload();
     });
   }
+
   navDone() {
+    this.taptic.selection();
     if (this.router.url === '/main') {
       this.router.navigateByUrl('/done');
     } else if (this.router.url === '/done') {
       this.router.navigateByUrl('/main');
     }
+  }
+
+  sendTask(item, email) {
+    this.afAuth.auth
   }
 
   moveByOffset(index, offset) {

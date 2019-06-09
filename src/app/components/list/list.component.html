@@ -1,7 +1,12 @@
 <ion-spinner *ngIf="loading" color="primary"></ion-spinner>
-  <ion-item-sliding *ngFor="let item of items; let i = index">
+<!-- <ion-card *ngFor="let item of items;">
+  <ion-card-header>
+    <ion-card-title>{{item.text}}</ion-card-title>
+  </ion-card-header>
+</ion-card> -->
+  <ion-item-sliding class="card" *ngFor="let item of items; let i = index">
     <ion-item (click)="edit(item)">
-      <ion-label>{{item.text}}</ion-label>
+      <ion-label class="label">{{item.text}}</ion-label>
       <ion-note color="primary" mode="ios" slot="end">{{item.fdate}}</ion-note>
     </ion-item>
 
@@ -32,7 +37,7 @@
   </ion-item-sliding>
   <!--<a style="position: absolute; left: 93%; top: 90%;" class="btn-floating waves-effect waves-light red" (click)="navDone()"><i class="material-icons">swap_horiz</i></a>-->
   <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-    <a class="btn-floating btn-large red">
+    <a class="btn-floating btn-large purple">
       <i (click)="navDone()" class="large material-icons">swap_horiz</i>
     </a>
   </div>

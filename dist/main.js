@@ -1063,7 +1063,9 @@ var AppModule = /** @class */ (function () {
             entryComponents: [],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["BrowserModule"],
-                _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["IonicModule"].forRoot(),
+                _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["IonicModule"].forRoot({
+                    mode: 'ios'
+                }),
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_10__["AppRoutingModule"],
                 _angular_fire__WEBPACK_IMPORTED_MODULE_11__["AngularFireModule"].initializeApp(_environments_environment__WEBPACK_IMPORTED_MODULE_14__["environment"].firebase),
                 _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_12__["AngularFirestoreModule"].enablePersistence(),
@@ -1096,7 +1098,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\" integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\">\n<script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\" integrity=\"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo\" crossorigin=\"anonymous\"></script>\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js\" integrity=\"sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1\" crossorigin=\"anonymous\"></script>\n<script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\" integrity=\"sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM\" crossorigin=\"anonymous\"></script>\n<ion-header>\n\t<ion-toolbar>\n\t\t<ion-title>\n      Add Task\n\t\t</ion-title>\n\t\t<ion-buttons end>\n\t\t\t<ion-button icon-only color=\"dark\" (click)=\"close()\"><ion-icon name=\"close\"></ion-icon></ion-button>\n\t\t</ion-buttons>\n\t</ion-toolbar>\n</ion-header>\n\n<ion-content>\n\t<ion-list>\n\n\t\t<ion-item>\n\t\t\t<ion-label position=\"stacked\">Task Name</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"preTask\" [(ngModel)]=\"tasks.name\"></ion-input>\n\t\t</ion-item>\n\t\t<ion-item>\n\t\t\t<ion-label position=\"stacked\">Date</ion-label>\n      <ion-datetime displayFormat=\"MM/DD/h/mm/a\" [(ngModel)]=\"preDate\" [(ngModel)]=\"tasks.datetime\"></ion-datetime>\n\t\t</ion-item>\n\n\t</ion-list>\n  <div class=\"text-center\"> \n\t  <button type=\"button\" class=\"btn btn-primary\" (click)=\"returnTask()\">Add</button>\n  </div>\n</ion-content>\n"
+module.exports = "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\" integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\">\n<script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\" integrity=\"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo\" crossorigin=\"anonymous\"></script>\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js\" integrity=\"sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1\" crossorigin=\"anonymous\"></script>\n<script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\" integrity=\"sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM\" crossorigin=\"anonymous\"></script>\n<ion-header>\n\t<ion-toolbar>\n\t\t<ion-title>\n      Add Task\n\t\t</ion-title>\n\t\t<ion-buttons end>\n\t\t\t<ion-button icon-only color=\"dark\" (click)=\"close()\"><ion-icon name=\"close\"></ion-icon></ion-button>\n\t\t</ion-buttons>\n\t</ion-toolbar>\n</ion-header>\n\n<ion-content>\n\t<ion-list>\n\n\t\t<ion-item>\n\t\t\t<ion-label position=\"stacked\">Task Name</ion-label>\n      <ion-input type=\"text\" [(ngModel)]=\"preTask\" [(ngModel)]=\"tasks.name\"></ion-input>\n\t\t</ion-item>\n\t\t<ion-item>\n\t\t\t<ion-label position=\"stacked\">Date</ion-label>\n      <ion-datetime mode=\"md\" displayFormat=\"MMMM DD, h:mm a\" placeholder=\"Select Date\" pickerFormat=\"MMM DD, h:mm a\" [(ngModel)]=\"preDate\" [(ngModel)]=\"tasks.datetime\"></ion-datetime>\n\t\t</ion-item>\n\n\t</ion-list>\n  <div class=\"text-center\"> \n\t  <button type=\"button\" class=\"btn waves-effect waves-purple\" style=\"background-color: purple; color: white;\" (click)=\"returnTask()\">Add / Edit</button>\n  </div>\n</ion-content>\n"
 
 /***/ }),
 
@@ -1107,7 +1109,7 @@ module.exports = "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvYWRkLW9yLWVkaXQvYWRkLW9yLWVkaXQuY29tcG9uZW50LnNjc3MifQ== */"
+module.exports = "* {\n  --ion-item-background: #1f1e1e;\n  --ion-background-color: #1f1e1e;\n  --ion-toolbar-background: #fff;\n  background: #1f1e1e;\n  color: #fff; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9hbGV4L1Byb2plY3RzL3RvZG8vc3JjL2FwcC9jb21wb25lbnRzL2FkZC1vci1lZGl0L2FkZC1vci1lZGl0LmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksOEJBQXNCO0VBQ3RCLCtCQUF1QjtFQUN2Qiw4QkFBeUI7RUFDekIsbUJBQW1CO0VBQ25CLFdBQVcsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvYWRkLW9yLWVkaXQvYWRkLW9yLWVkaXQuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIqIHtcbiAgICAtLWlvbi1pdGVtLWJhY2tncm91bmQ6ICMxZjFlMWU7XG4gICAgLS1pb24tYmFja2dyb3VuZC1jb2xvcjogIzFmMWUxZTtcbiAgICAtLWlvbi10b29sYmFyLWJhY2tncm91bmQ6ICNmZmY7XG4gICAgYmFja2dyb3VuZDogIzFmMWUxZTtcbiAgICBjb2xvcjogI2ZmZjtcbn1cbiJdfQ== */"
 
 /***/ }),
 
@@ -1124,20 +1126,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../task */ "./src/app/task.ts");
+/* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/ngx/index.js");
+/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../task */ "./src/app/task.ts");
+
 
 
 
 
 var AddOrEditComponent = /** @class */ (function () {
-    function AddOrEditComponent(modalCtrl, navParams) {
+    function AddOrEditComponent(modalCtrl, navParams, statusBar) {
         this.modalCtrl = modalCtrl;
         this.navParams = navParams;
+        this.statusBar = statusBar;
         this.preTask = this.navParams.get('task');
         this.preDate = this.navParams.get('date');
-        this.tasks = new _task__WEBPACK_IMPORTED_MODULE_3__["Task"]('');
+        this.tasks = new _task__WEBPACK_IMPORTED_MODULE_4__["Task"]('');
     }
-    AddOrEditComponent.prototype.ngOnInit = function () { };
+    AddOrEditComponent.prototype.ngOnInit = function () {
+    };
     AddOrEditComponent.prototype.returnTask = function () {
         var task = {
             task: this.tasks.name,
@@ -1154,7 +1160,7 @@ var AddOrEditComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./add-or-edit.component.html */ "./src/app/components/add-or-edit/add-or-edit.component.html"),
             styles: [__webpack_require__(/*! ./add-or-edit.component.scss */ "./src/app/components/add-or-edit/add-or-edit.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"], _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_3__["StatusBar"]])
     ], AddOrEditComponent);
     return AddOrEditComponent;
 }());
@@ -1228,7 +1234,7 @@ var ComponentsModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css\">\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js\"></script>\n<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/icon?family=Material+Icons\">\n\n  <ion-title color=\"dark\" style=\"float: left;\">\n      {{user.displayName}}'s {{title}} ({{items.length}})\n      <a style=\"font-size: 13px;\" (click)=\"signOut.emit()\">sign out</a>\n  </ion-title>\n  <!--<ion-buttons slot=\"primary\" mode=\"md\">-->\n    <!--<ion-button shape=\"round\" color=\"primary\" icon-only (click)=\"add.emit()\">-->\n      <!--<ion-icon name=\"add-circle\"></ion-icon>-->\n    <!--</ion-button>-->\n  <!--</ion-buttons>-->\n  <a style=\"float: right; position: absolute; left: 87%; bottom: 16%;\" class=\"btn-floating waves-effect waves-light blue\" (click)=\"add.emit()\"><i class=\"material-icons\">add</i></a>\n"
+module.exports = "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css\">\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js\"></script>\n<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/icon?family=Material+Icons\">\n  <ion-title (click)=\"signOut.emit()\" style=\"float: left;\">\n      {{user.displayName}}'s {{title}} ({{items.length}})\n  </ion-title>\n  <a class=\"btn-flat btn-floating waves-effect\" (click)=\"add.emit()\"><i class=\"material-icons\" style=\"color: purple; font-size: 32px;\">add</i></a>\n"
 
 /***/ }),
 
@@ -1239,7 +1245,7 @@ module.exports = "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/a
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvbGlzdC1oZWFkZXIvbGlzdC1oZWFkZXIuY29tcG9uZW50LnNjc3MifQ== */"
+module.exports = "* {\n  font-family: \"Product Sans Bold\"; }\n\n@media (min-width: 320px) {\n  .btn-floating {\n    float: right;\n    position: absolute;\n    left: 87%;\n    bottom: 16%;\n    top: 20%; }\n  ion-title {\n    font-size: 24px;\n    padding-left: 10px; } }\n\n@media (min-width: 641px) {\n  .btn-floating {\n    left: 96%; }\n  ion-title {\n    font-size: 26px;\n    padding-left: 25px; } }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9hbGV4L1Byb2plY3RzL3RvZG8vc3JjL2FwcC9jb21wb25lbnRzL2xpc3QtaGVhZGVyL2xpc3QtaGVhZGVyLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksZ0NBQWdDLEVBQUE7O0FBR3BDO0VBQ0k7SUFDSSxZQUFZO0lBQ1osa0JBQWtCO0lBQ2xCLFNBQVM7SUFDVCxXQUFXO0lBQ1gsUUFBUSxFQUFBO0VBRVo7SUFDSSxlQUFlO0lBQ2Ysa0JBQWtCLEVBQUEsRUFDckI7O0FBR0w7RUFDSTtJQUNJLFNBQVMsRUFBQTtFQUViO0lBQ0ksZUFBZTtJQUNmLGtCQUFrQixFQUFBLEVBQ3JCIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9saXN0LWhlYWRlci9saXN0LWhlYWRlci5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIioge1xuICAgIGZvbnQtZmFtaWx5OiBcIlByb2R1Y3QgU2FucyBCb2xkXCI7XG59XG5cbkBtZWRpYSAobWluLXdpZHRoOjMyMHB4KSB7XG4gICAgLmJ0bi1mbG9hdGluZyB7XG4gICAgICAgIGZsb2F0OiByaWdodDtcbiAgICAgICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgICAgICBsZWZ0OiA4NyU7XG4gICAgICAgIGJvdHRvbTogMTYlO1xuICAgICAgICB0b3A6IDIwJTtcbiAgICB9XG4gICAgaW9uLXRpdGxlIHtcbiAgICAgICAgZm9udC1zaXplOiAyNHB4O1xuICAgICAgICBwYWRkaW5nLWxlZnQ6IDEwcHg7XG4gICAgfVxufVxuXG5AbWVkaWEgKG1pbi13aWR0aDo2NDFweCkge1xuICAgIC5idG4tZmxvYXRpbmcge1xuICAgICAgICBsZWZ0OiA5NiU7XG4gICAgfVxuICAgIGlvbi10aXRsZSB7XG4gICAgICAgIGZvbnQtc2l6ZTogMjZweDtcbiAgICAgICAgcGFkZGluZy1sZWZ0OiAyNXB4O1xuICAgIH1cbn1cbiJdfQ== */"
 
 /***/ }),
 
@@ -1309,7 +1315,7 @@ var ListHeaderComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-spinner *ngIf=\"loading\" color=\"primary\"></ion-spinner>\n  <ion-item-sliding *ngFor=\"let item of items; let i = index\">\n    <ion-item (click)=\"edit(item)\">\n      <ion-label>{{item.text}}</ion-label>\n      <ion-note color=\"primary\" mode=\"ios\" slot=\"end\">{{item.fdate}}</ion-note>\n    </ion-item>\n\n    <ion-item-options side=\"start\" (ionSwipe)=\"complete(item)\">\n      <ion-item-option color=\"success\" (click)=\"complete(item)\" *ngIf=\"allowDone\" [expandable]=\"allowDone\">\n        <ion-icon name=\"checkmark-circle\"></ion-icon>\n      </ion-item-option>\n      <ion-item-option color=\"secondary\" (click)=\"crit(item)\" *ngIf=\"allowCrit\">\n        <ion-icon name=\"flash\"></ion-icon>\n      </ion-item-option>\n      <ion-item-option color=\"secondary\" (click)=\"later(item)\" *ngIf=\"allowLater\">\n        <ion-icon name=\"moon\"></ion-icon>\n      </ion-item-option>\n      <ion-item-option color=\"secondary\" (click)=\"moveByOffset(i, -1)\" *ngIf=\"i !== 0\">\n        <ion-icon name=\"arrow-up\"></ion-icon>\n      </ion-item-option>\n      <ion-item-option color=\"secondary\" (click)=\"moveByOffset(i, 1)\" *ngIf=\"i !== items.length-1\">\n        <ion-icon name=\"arrow-down\"></ion-icon>\n      </ion-item-option>\n    </ion-item-options>\n    \n    <ion-item-options side=\"end\" (ionSwipe)=\"delete(item)\">\n      <ion-item-option color=\"danger\" (click)=\"delete(item)\" expandable>\n        <ion-icon name=\"close\"></ion-icon>\n      </ion-item-option>\n    </ion-item-options>\n\n  </ion-item-sliding>\n  <!--<a style=\"position: absolute; left: 93%; top: 90%;\" class=\"btn-floating waves-effect waves-light red\" (click)=\"navDone()\"><i class=\"material-icons\">swap_horiz</i></a>-->\n  <div class=\"fixed-action-btn\" style=\"bottom: 45px; right: 24px;\">\n    <a class=\"btn-floating btn-large red\">\n      <i (click)=\"navDone()\" class=\"large material-icons\">swap_horiz</i>\n    </a>\n  </div>\n\n"
+module.exports = "<ion-spinner *ngIf=\"loading\" color=\"primary\"></ion-spinner>\n<!-- <ion-card *ngFor=\"let item of items;\">\n  <ion-card-header>\n    <ion-card-title>{{item.text}}</ion-card-title>\n  </ion-card-header>\n</ion-card> -->\n  <ion-item-sliding class=\"card\" *ngFor=\"let item of items; let i = index\">\n    <ion-item (click)=\"edit(item)\">\n      <ion-label class=\"label\">{{item.text}}</ion-label>\n      <ion-note color=\"primary\" mode=\"ios\" slot=\"end\">{{item.fdate}}</ion-note>\n    </ion-item>\n\n    <ion-item-options side=\"start\" (ionSwipe)=\"complete(item)\">\n      <ion-item-option color=\"success\" (click)=\"complete(item)\" *ngIf=\"allowDone\" [expandable]=\"allowDone\">\n        <ion-icon name=\"checkmark-circle\"></ion-icon>\n      </ion-item-option>\n      <ion-item-option color=\"secondary\" (click)=\"crit(item)\" *ngIf=\"allowCrit\">\n        <ion-icon name=\"flash\"></ion-icon>\n      </ion-item-option>\n      <ion-item-option color=\"secondary\" (click)=\"later(item)\" *ngIf=\"allowLater\">\n        <ion-icon name=\"moon\"></ion-icon>\n      </ion-item-option>\n      <ion-item-option color=\"secondary\" (click)=\"moveByOffset(i, -1)\" *ngIf=\"i !== 0\">\n        <ion-icon name=\"arrow-up\"></ion-icon>\n      </ion-item-option>\n      <ion-item-option color=\"secondary\" (click)=\"moveByOffset(i, 1)\" *ngIf=\"i !== items.length-1\">\n        <ion-icon name=\"arrow-down\"></ion-icon>\n      </ion-item-option>\n    </ion-item-options>\n    \n    <ion-item-options side=\"end\" (ionSwipe)=\"delete(item)\">\n      <ion-item-option color=\"danger\" (click)=\"delete(item)\" expandable>\n        <ion-icon name=\"close\"></ion-icon>\n      </ion-item-option>\n    </ion-item-options>\n\n  </ion-item-sliding>\n  <!--<a style=\"position: absolute; left: 93%; top: 90%;\" class=\"btn-floating waves-effect waves-light red\" (click)=\"navDone()\"><i class=\"material-icons\">swap_horiz</i></a>-->\n  <div class=\"fixed-action-btn\" style=\"bottom: 45px; right: 24px;\">\n    <a class=\"btn-floating btn-large purple\">\n      <i (click)=\"navDone()\" class=\"large material-icons\">swap_horiz</i>\n    </a>\n  </div>\n\n"
 
 /***/ }),
 
@@ -1320,7 +1326,7 @@ module.exports = "<ion-spinner *ngIf=\"loading\" color=\"primary\"></ion-spinner
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "ion-spinner {\n  margin-left: 16px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9hbGV4L3RvZG8vc3JjL2FwcC9jb21wb25lbnRzL2xpc3QvbGlzdC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGlCQUFpQixFQUFBIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9saXN0L2xpc3QuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24tc3Bpbm5lciB7XG4gIG1hcmdpbi1sZWZ0OiAxNnB4O1xufVxuIl19 */"
+module.exports = "ion-spinner {\n  margin-left: 16px; }\n\n* {\n  font-family: \"Product Sans\"; }\n\n.card {\n  padding: 0 !important;\n  border-radius: 10px;\n  background-color: #2e2e2e;\n  margin-left: 2%;\n  margin-right: 0%;\n  white-space: normal !important;\n  width: 95% !important; }\n\n.label {\n  font-size: 17px;\n  font-family: 'Product Sans Bold'; }\n\nion-note {\n  font-size: 15px;\n  color: #cfcfcf; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9hbGV4L1Byb2plY3RzL3RvZG8vc3JjL2FwcC9jb21wb25lbnRzL2xpc3QvbGlzdC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGlCQUFpQixFQUFBOztBQUVuQjtFQUNFLDJCQUEyQixFQUFBOztBQUc3QjtFQUNFLHFCQUFxQjtFQUNyQixtQkFBbUI7RUFDbkIseUJBQXlCO0VBQ3pCLGVBQWU7RUFDZixnQkFBZ0I7RUFDaEIsOEJBQThCO0VBQzlCLHFCQUFxQixFQUFBOztBQUl2QjtFQUNFLGVBQWU7RUFDZixnQ0FDRixFQUFBOztBQUNBO0VBQ0UsZUFBZTtFQUNmLGNBQXlCLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL2xpc3QvbGlzdC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1zcGlubmVyIHtcbiAgbWFyZ2luLWxlZnQ6IDE2cHg7XG59XG4qIHtcbiAgZm9udC1mYW1pbHk6IFwiUHJvZHVjdCBTYW5zXCI7XG59XG5cbi5jYXJkIHtcbiAgcGFkZGluZzogMCAhaW1wb3J0YW50O1xuICBib3JkZXItcmFkaXVzOiAxMHB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMmUyZTJlO1xuICBtYXJnaW4tbGVmdDogMiU7XG4gIG1hcmdpbi1yaWdodDogMCU7XG4gIHdoaXRlLXNwYWNlOiBub3JtYWwgIWltcG9ydGFudDtcbiAgd2lkdGg6IDk1JSAhaW1wb3J0YW50O1xuICBcbn1cblxuLmxhYmVsIHtcbiAgZm9udC1zaXplOiAxN3B4O1xuICBmb250LWZhbWlseTogJ1Byb2R1Y3QgU2FucyBCb2xkJ1xufVxuaW9uLW5vdGUge1xuICBmb250LXNpemU6IDE1cHg7XG4gIGNvbG9yOiByZ2IoMjA3LCAyMDcsIDIwNyk7XG59XG4iXX0= */"
 
 /***/ }),
 
@@ -1342,6 +1348,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _add_or_edit_add_or_edit_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../add-or-edit/add-or-edit.component */ "./src/app/components/add-or-edit/add-or-edit.component.ts");
 /* harmony import */ var _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic-native/local-notifications/ngx */ "./node_modules/@ionic-native/local-notifications/ngx/index.js");
+/* harmony import */ var _ionic_native_taptic_engine_ngx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic-native/taptic-engine/ngx */ "./node_modules/@ionic-native/taptic-engine/ngx/index.js");
+
 
 
 
@@ -1351,7 +1359,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ListComponent = /** @class */ (function () {
-    function ListComponent(afAuth, db, alertCtrl, router, modalCtrl, notifs) {
+    function ListComponent(afAuth, db, alertCtrl, router, modalCtrl, notifs, taptic) {
         var _this = this;
         this.afAuth = afAuth;
         this.db = db;
@@ -1359,6 +1367,7 @@ var ListComponent = /** @class */ (function () {
         this.router = router;
         this.modalCtrl = modalCtrl;
         this.notifs = notifs;
+        this.taptic = taptic;
         this.user = {};
         this.items = [];
         this.loading = true;
@@ -1382,7 +1391,8 @@ var ListComponent = /** @class */ (function () {
                     var item = a.payload.doc.data();
                     item['id'] = a.payload.doc.id;
                     _this.items.push(item);
-                    item['fdate'] = new Date(item['date']).toLocaleString();
+                    var options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+                    item['fdate'] = new Date(item['date']).toLocaleString('en-US', options);
                 });
                 _this.loading = false;
             });
@@ -1393,7 +1403,9 @@ var ListComponent = /** @class */ (function () {
             var modal, res;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.modalCtrl.create({ component: _add_or_edit_add_or_edit_component__WEBPACK_IMPORTED_MODULE_6__["AddOrEditComponent"] })];
+                    case 0:
+                        this.taptic.selection();
+                        return [4 /*yield*/, this.modalCtrl.create({ component: _add_or_edit_add_or_edit_component__WEBPACK_IMPORTED_MODULE_6__["AddOrEditComponent"] })];
                     case 1:
                         modal = _a.sent();
                         return [4 /*yield*/, modal.present()];
@@ -1402,7 +1414,6 @@ var ListComponent = /** @class */ (function () {
                         return [4 /*yield*/, modal.onDidDismiss()];
                     case 3:
                         res = _a.sent();
-                        console.log(res);
                         this.handleAddItem(res.data.task, res.data.date);
                         return [2 /*return*/];
                 }
@@ -1459,16 +1470,14 @@ var ListComponent = /** @class */ (function () {
         });
     };
     ListComponent.prototype.handleEditItem = function (text, item, date) {
-        var notifID;
+        var _this = this;
         this.db.doc("users/" + this.afAuth.auth.currentUser.uid + "/" + this.name + "/" + item.id).get().subscribe(function (doc) {
-            notifID = doc.data().created;
-            console.log('infunc: ', notifID);
-        });
-        console.log('notifID: ', notifID);
-        this.notifs.update({
-            id: notifID,
-            text: text,
-            trigger: { at: new Date(date) }
+            var editNotifID = doc.data().created;
+            _this.notifs.update({
+                id: editNotifID,
+                text: text,
+                trigger: { at: new Date(date) }
+            });
         });
         this.db.doc("users/" + this.afAuth.auth.currentUser.uid + "/" + this.name + "/" + item.id).set({
             text: text,
@@ -1500,6 +1509,42 @@ var ListComponent = /** @class */ (function () {
         });
     };
     ListComponent.prototype.signOut = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertCtrl.create({
+                            header: 'Sign Out?',
+                            mode: 'md',
+                            cssClass: 'alertbox',
+                            buttons: [
+                                {
+                                    text: 'Yes',
+                                    cssClass: 'alertbox',
+                                    handler: function () {
+                                        _this.signOuts();
+                                    }
+                                },
+                                {
+                                    text: 'No',
+                                    cssClass: 'alertbox',
+                                    handler: function () {
+                                    }
+                                }
+                            ]
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        return [4 /*yield*/, alert.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    ListComponent.prototype.signOuts = function () {
         this.afAuth.auth.signOut().then(function () {
             location.reload();
         });
@@ -1511,6 +1556,9 @@ var ListComponent = /** @class */ (function () {
         else if (this.router.url === '/done') {
             this.router.navigateByUrl('/main');
         }
+    };
+    ListComponent.prototype.sendTask = function (item, email) {
+        this.afAuth.auth;
     };
     ListComponent.prototype.moveByOffset = function (index, offset) {
         this.db.doc("users/" + this.afAuth.auth.currentUser.uid + "/" + this.name + "/" + this.items[index].id).set({
@@ -1543,7 +1591,8 @@ var ListComponent = /** @class */ (function () {
             _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"],
             _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"],
-            _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_7__["LocalNotifications"]])
+            _ionic_native_local_notifications_ngx__WEBPACK_IMPORTED_MODULE_7__["LocalNotifications"],
+            _ionic_native_taptic_engine_ngx__WEBPACK_IMPORTED_MODULE_8__["TapticEngine"]])
     ], ListComponent);
     return ListComponent;
 }());
@@ -1623,7 +1672,7 @@ var LoginPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>Log In!</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n\n  <firebase-ui></firebase-ui>\n\n</ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>Log In!</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n\n  <firebase-ui style=\"background: #2e2e2e !important;\" dark></firebase-ui>\n\n</ion-content>\n"
 
 /***/ }),
 
@@ -1634,7 +1683,7 @@ module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>Log In!</ion-tit
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "p {\n  text-align: center; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9hbGV4L3RvZG8vc3JjL2FwcC9sb2dpbi9sb2dpbi5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxrQkFBa0IsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2xvZ2luL2xvZ2luLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbInAge1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbiJdfQ== */"
+module.exports = "* {\n  font-family: \"Product Sans Bold\"; }\n\nfirebase-ui {\n  color: #fff; }\n\n.firebaseui-container {\n  background-color: #2e2e2e !important; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9hbGV4L1Byb2plY3RzL3RvZG8vc3JjL2FwcC9sb2dpbi9sb2dpbi5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBR0E7RUFDSSxnQ0FBZ0MsRUFBQTs7QUFHcEM7RUFDSSxXQUFXLEVBQUE7O0FBR2Y7RUFDSSxvQ0FBb0MsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2xvZ2luL2xvZ2luLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbInAge1xuICAgIC8vIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbioge1xuICAgIGZvbnQtZmFtaWx5OiBcIlByb2R1Y3QgU2FucyBCb2xkXCI7XG59XG5cbmZpcmViYXNlLXVpIHtcbiAgICBjb2xvcjogI2ZmZjtcbn1cblxuLmZpcmViYXNldWktY29udGFpbmVyIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMmUyZTJlICFpbXBvcnRhbnQ7XG59Il19 */"
 
 /***/ }),
 
@@ -1764,7 +1813,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/alex/todo/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/alex/Projects/todo/src/main.ts */"./src/main.ts");
 
 
 /***/ })

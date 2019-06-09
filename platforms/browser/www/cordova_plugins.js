@@ -97,6 +97,14 @@ module.exports = [
             "cordova.plugins.notification.local.core",
             "plugin.notification.local.core"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-taptic-engine/www/TapticEngine.js",
+        "id": "cordova-plugin-taptic-engine.TapticEngine",
+        "pluginId": "cordova-plugin-taptic-engine",
+        "clobbers": [
+            "TapticEngine"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -109,7 +117,8 @@ module.exports.metadata =
     "cordova-plugin-statusbar": "2.4.2",
     "cordova-plugin-whitelist": "1.3.3",
     "cordova-plugin-badge": "0.8.8",
-    "cordova-plugin-local-notification": "0.9.0-beta.2"
+    "cordova-plugin-local-notification": "0.9.0-beta.2",
+    "cordova-plugin-taptic-engine": "2.1.0"
 }
 // BOTTOM OF METADATA
 });

@@ -81,6 +81,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "window.StatusBar"
       ]
+    },
+    {
+      "id": "cordova-plugin-taptic-engine.TapticEngine",
+      "file": "plugins/cordova-plugin-taptic-engine/www/TapticEngine.js",
+      "pluginId": "cordova-plugin-taptic-engine",
+      "clobbers": [
+        "TapticEngine"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -91,6 +99,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-local-notification": "0.9.0-beta.2",
     "cordova-plugin-splashscreen": "5.0.2",
     "cordova-plugin-statusbar": "2.4.2",
+    "cordova-plugin-taptic-engine": "2.1.0",
     "cordova-plugin-whitelist": "1.3.3"
   };
 });

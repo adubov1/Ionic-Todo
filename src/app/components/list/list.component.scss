@@ -1,3 +1,26 @@
 ion-spinner {
   margin-left: 16px;
 }
+* {
+  font-family: "Product Sans";
+}
+
+.card {
+  padding: 0 !important;
+  border-radius: 10px;
+  background-color: #2e2e2e;
+  margin-left: 2%;
+  margin-right: 0%;
+  white-space: normal !important;
+  width: 95% !important;
+  
+}
+
+.label {
+  font-size: 17px;
+  font-family: 'Product Sans Bold'
+}
+ion-note {
+  font-size: 15px;
+  color: rgb(207, 207, 207);
+}
